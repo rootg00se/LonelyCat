@@ -7,7 +7,7 @@ public class GameInputManager : MonoBehaviour {
 
     private GameInput _gameInput;
 
-    void Awake() {
+    private void Awake() {
         if (Instance != null) {
             Debug.LogError("There are more than 2 GameInputManager");
         }

@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    public static PlayerMovement Instance { get; private set; }
+
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private LayerMask _groundLayer;
@@ -12,12 +14,20 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isGrounded = true;
     private Vector3 _movement;
 
-    void Awake() {
+    private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("Instance of PlayerMovement already exists");
+        }
+
+        Instance = this;
+    }
+
+    private void Start() {
         GameInputManager.Instance.OnJump += OnJumpPerformed;
         _rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+    private void Update() {
         Move();
         Reflect();
         CheckIfOnGround();
@@ -43,5 +53,13 @@ public class PlayerMovement : MonoBehaviour {
             transform.localScale *= new Vector2(-1, 1);
             _isFacingRight = !_isFacingRight;
         }
+    }
+
+    public bool GetIsGrounded() {
+        return _isGrounded;
+    }
+
+    public bool GetIsRunning() {
+        return _movement.x != 0;
     }
 }
