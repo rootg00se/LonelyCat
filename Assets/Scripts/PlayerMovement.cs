@@ -27,8 +27,11 @@ public class PlayerMovement : MonoBehaviour {
         _rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         Move();
+    }
+
+    private void Update() {
         Reflect();
         CheckIfOnGround();
     }
