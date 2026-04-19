@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class GameInputManager : MonoBehaviour {
     public static GameInputManager Instance { get; private set; }
+
     public event Action OnJump;
+    public event Action OnInteract;
 
     private GameInput _gameInput;
 
@@ -18,10 +20,15 @@ public class GameInputManager : MonoBehaviour {
         _gameInput.Player.Enable();
 
         _gameInput.Player.Jump.performed += JumpPerformed;
+        _gameInput.Player.Interact.performed += InteractPerformed;
     }
 
     private void JumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         OnJump?.Invoke();
+    }
+
+    private void InteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnInteract?.Invoke();
     }
 
     public Vector2 GetMovementVector() {
