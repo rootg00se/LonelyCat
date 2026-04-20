@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f68cfa6bc0b492382b7ca5a6083cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLife
+  _playerVisual: {fileID: 87177879}
+  _explosionPrefab: {fileID: 488826068251518395, guid: 374f0580caf734f458922a9d1b8d135b, type: 3}
 --- !u!114 &13675053
 MonoBehaviour:
   m_ObjectHideFlags: 0

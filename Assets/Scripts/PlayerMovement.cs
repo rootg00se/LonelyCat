@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private float _groundPointRadius;
 
+    private Vector3 _movement;
     private Rigidbody2D _rigidBody;
+
     private bool _isFacingRight = false;
     private bool _isGrounded = true;
-    private Vector3 _movement;
+    private bool _canInteract = true;
 
     private void Awake() {
         if (Instance != null) {
@@ -28,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        Move();
+        if (_canInteract) Move();
     }
 
     private void Update() {
@@ -64,5 +66,17 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool GetIsRunning() {
         return _movement.x != 0;
+    }
+
+    public void StopInteraction() {
+        _canInteract = false;
+    }
+
+    public void StartInteraction() {
+        _canInteract = true;
+    }
+
+    public bool CanInteract() {
+        return _canInteract;
     }
 }

@@ -19,4 +19,8 @@ public class SwapSkin : MonoBehaviour
     public void ChangeToDefaultAsset() {
         _spriteLibrary.spriteLibraryAsset = _defaultSpriteLibrary;
     }
+
+    public void AllowInteractions() {
+        PlayerMovement.Instance.StartInteraction();
+    }
 }

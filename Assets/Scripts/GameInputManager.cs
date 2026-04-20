@@ -11,7 +11,8 @@ public class GameInputManager : MonoBehaviour {
 
     private void Awake() {
         if (Instance != null) {
-            Debug.LogError("There are more than 2 GameInputManager");
+            Destroy(gameObject);
+            return;
         }
 
         Instance = this;
@@ -24,17 +25,33 @@ public class GameInputManager : MonoBehaviour {
     }
 
     private void JumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        OnJump?.Invoke();
+        if (PlayerMovement.Instance != null && PlayerMovement.Instance.CanInteract()) {
+            OnJump?.Invoke();
+        }
     }
 
     private void InteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        OnInteract?.Invoke();
+        if (PlayerMovement.Instance != null && PlayerMovement.Instance.CanInteract()) {
+            OnInteract?.Invoke();
+        }
     }
 
     public Vector2 GetMovementVector() {
+        if (_gameInput == null) return Vector2.zero;
+
         float horizontalInput = _gameInput.Player.Movement.ReadValue<float>();
         Vector2 movement = new(horizontalInput, 0);
 
         return movement;
+    }
+
+    private void OnDestroy() {
+        if (_gameInput != null) {
+            _gameInput.Player.Jump.performed -= JumpPerformed;
+            _gameInput.Player.Interact.performed -= InteractPerformed;
+
+            _gameInput.Player.Disable();
+            _gameInput.Dispose();
+        }
     }
 }

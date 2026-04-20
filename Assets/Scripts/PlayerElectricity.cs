@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerElectricity : MonoBehaviour {
     public static PlayerElectricity Instance { get; private set; }
 
-    private bool _canInteract = false;
+    private bool _canInteractWithPanel = false;
     public event Action OnElectrification;
 
     private void Awake() {
@@ -20,12 +20,13 @@ public class PlayerElectricity : MonoBehaviour {
     }
 
     private void OnInteractPerformed() {
-        if (_canInteract) {
+        if (_canInteractWithPanel) {
             OnElectrification?.Invoke();
+            PlayerMovement.Instance.StopInteraction();
         }
     }
 
-    public void SetCanInteract(bool canInteract) {
-        _canInteract = canInteract;
+    public void SetCanInteractWithPanel(bool canInteract) {
+        _canInteractWithPanel = canInteract;
     }
 }
