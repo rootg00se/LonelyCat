@@ -12,6 +12,7 @@ public class PlayerDeath : MonoBehaviour {
 
     private Rigidbody2D _rigidBody;
     private Collider2D _collider;
+    private float _reloadSceneTime = 1f;
 
     private void Awake() {
         if (Instance != null) {
@@ -45,7 +46,7 @@ public class PlayerDeath : MonoBehaviour {
     }
 
     private IEnumerator RestartLevel() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_reloadSceneTime);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
