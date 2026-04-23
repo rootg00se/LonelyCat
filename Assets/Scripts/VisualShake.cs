@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class VisualShake : MonoBehaviour {
+    [Header("Shake Settings")]
     [SerializeField] private float _intensity = 0.05f;
     [SerializeField] private float _speed = 50f;
 

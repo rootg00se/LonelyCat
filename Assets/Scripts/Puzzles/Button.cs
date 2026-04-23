@@ -1,9 +1,11 @@
 using UnityEngine;
 
 public class Button : MonoBehaviour {
+    [Header("Base settings")]
     [SerializeField] private Obstacle _obstacle;
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
+    [Header("Sprites")]
     [SerializeField] private Sprite _triggerBlockVisual; 
     [SerializeField] private Sprite _activeButtonVisual; 
     [SerializeField] private Sprite _inactiveButtonVisual;

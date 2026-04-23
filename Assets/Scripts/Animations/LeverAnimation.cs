@@ -1,17 +1,18 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class LeverAnimation : MonoBehaviour {
-    private const string SET_ACTIVATE = "Activate";
+    private const string ON_ACTIVATE = "Activate";
     
     [SerializeField] private Lever _lever;
     private Animator _animator;
 
     private void Start() {
         _animator = gameObject.GetComponent<Animator>();
-        _lever.OnActivate += OnActivatePerformed;
+        _lever.OnActivate += OnActivate;
     }
 
-    private void OnActivatePerformed() {
-        _animator.SetTrigger(SET_ACTIVATE);
+    private void OnActivate() {
+        _animator.SetTrigger(ON_ACTIVATE);
     }
 }

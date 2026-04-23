@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class ButtonBlock : MonoBehaviour {
+    [Header("Visual Settings")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _defaultSprite;
 

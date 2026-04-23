@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour {
     private const string IS_RUNNING = "IsRunning";
     private const string ON_JUMPED = "Jumped";
@@ -13,8 +14,8 @@ public class PlayerAnimations : MonoBehaviour {
     } 
 
     private void Start() {
-        GameInputManager.Instance.OnJump += OnJumpPerformed;
-        PlayerElectricity.Instance.OnElectrification += OnElectrificationPerformed;
+        GameInputManager.Instance.OnJump += OnJump;
+        PlayerElectricity.Instance.OnElectrification += OnElectrification;
     }
 
     private void Update() {
@@ -22,11 +23,6 @@ public class PlayerAnimations : MonoBehaviour {
         _animator.SetBool(IS_RUNNING, PlayerMovement.Instance.GetIsRunning());
     }
 
-    private void OnJumpPerformed() {
-        _animator.SetTrigger(ON_JUMPED);
-    }
-
-    private void OnElectrificationPerformed() {
-        _animator.SetTrigger(ON_ELECTRIFY);
-    }
+    private void OnJump() => _animator.SetTrigger(ON_JUMPED);
+    private void OnElectrification() =>_animator.SetTrigger(ON_ELECTRIFY);
 }

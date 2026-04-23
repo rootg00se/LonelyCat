@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Spear : MonoBehaviour {
+    [Header("Spear settings")]
     [SerializeField] private float _speed;
     [SerializeField] private float _lifeTime;
 

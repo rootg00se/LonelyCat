@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour {
     public event Action OnActivate;
+    
     [SerializeField] private Obstacle _obstacle;
 
     private void OnTriggerEnter2D(Collider2D collision) {

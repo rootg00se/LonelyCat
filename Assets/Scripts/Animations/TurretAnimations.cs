@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class TurretAnimations : MonoBehaviour {
     private const string ON_SHOOT = "Shoot";
     private Animator _animator;
@@ -7,7 +8,7 @@ public class TurretAnimations : MonoBehaviour {
     [SerializeField] private Turret _turret;
 
     private void Start() {
-        _animator = GetComponent<Animator>();
+        _animator = gameObject.GetComponent<Animator>();
         _turret.OnShoot += OnShoot;
     }
 

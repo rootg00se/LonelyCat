@@ -5,14 +5,19 @@ using UnityEngine;
 public class Turret : MonoBehaviour {
     public event Action OnShoot;
 
-    [SerializeField] private float _reloadTime;
+    [Header("Spear Settings")]
     [SerializeField] private GameObject _spearPrefab;
     [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private float _detectionRange;
+    [SerializeField] private Vector2 _shootDirection = Vector2.left;
+
+    [Header("Detection Settings")]
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private LayerMask _playerMask;
-    [SerializeField] private Vector2 _shootDirection = Vector2.left;
+    [SerializeField] private float _detectionRange;
     [SerializeField] private float _observeAngle;
+
+    [Header("Reload Settings")]
+    [SerializeField] private float _reloadTime;
 
     private bool _isCharged = true;
     private Transform _playerTransform;

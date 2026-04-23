@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class PointMoving : MonoBehaviour {
+    [Header("Base settings")]
     [SerializeField] private Transform[] _movingPoints;
     [SerializeField] private float _cooldown;
     [SerializeField] private float _movingSpeed;

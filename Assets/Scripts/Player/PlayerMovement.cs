@@ -1,13 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement Instance { get; private set; }
 
-    [SerializeField] private float _speed;
+    [Header("Jump Settings")]
     [SerializeField] private float _jumpForce;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _groundPoint;
     [SerializeField] private float _groundPointRadius;
+
+    [Header("Movement Speed")]
+    [SerializeField] private float _speed;
 
     private Vector3 _movement;
     private Rigidbody2D _rigidBody;
@@ -18,14 +22,15 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Awake() {
         if (Instance != null) {
-            Debug.LogError("Instance of PlayerMovement already exists");
+            Destroy(gameObject);
+            return;
         }
 
         Instance = this;
     }
 
     private void Start() {
-        GameInputManager.Instance.OnJump += OnJumpPerformed;
+        GameInputManager.Instance.OnJump += OnJump;
         _rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -38,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
         CheckIfOnGround();
     }
 
-    private void OnJumpPerformed() {
+    private void OnJump() {
         if (_isGrounded) {
             _rigidBody.linearVelocity = new Vector2(_rigidBody.linearVelocity.x, _jumpForce);
         }

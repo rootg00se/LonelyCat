@@ -9,17 +9,18 @@ public class PlayerElectricity : MonoBehaviour {
 
     private void Awake() {
         if (Instance != null) {
-            Debug.LogError("Instance of PlayerElectricity already exists");
+            Destroy(gameObject);
+            return;
         }
 
         Instance = this;
     }
 
     private void Start() {
-        GameInputManager.Instance.OnInteract += OnInteractPerformed;
+        GameInputManager.Instance.OnInteract += OnInteract;
     }
 
-    private void OnInteractPerformed() {
+    private void OnInteract() {
         if (_canInteractWithPanel) {
             OnElectrification?.Invoke();
             PlayerMovement.Instance.StopInteraction();

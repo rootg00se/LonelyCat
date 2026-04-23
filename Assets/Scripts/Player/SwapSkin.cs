@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-public class SwapSkin : MonoBehaviour
-{
+[RequireComponent(typeof(SpriteLibrary))]
+public class SwapSkin : MonoBehaviour {
+    [Header("Sprite Libraries")]
     [SerializeField] private SpriteLibraryAsset _defaultSpriteLibrary;
     [SerializeField] private SpriteLibraryAsset _electricSpriteLibrary;
 
     private SpriteLibrary _spriteLibrary;
 
     private void Awake() {
-        _spriteLibrary = GetComponent<SpriteLibrary>();
+        _spriteLibrary = gameObject.GetComponent<SpriteLibrary>();
     }
 
     public void ChangeToElectricAsset() {

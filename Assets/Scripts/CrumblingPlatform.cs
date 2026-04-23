@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class CrumblingPlatform : MonoBehaviour, IShakeProvider {
     public event Action OnCrumble;
     public event Action OnRestore;
@@ -9,6 +10,7 @@ public class CrumblingPlatform : MonoBehaviour, IShakeProvider {
     public event Action OnShakeStart;
     public event Action OnShakeEnd;
 
+    [Header("Platform Settings")]
     [SerializeField] private float _destroyDelay;
     [SerializeField] private float _restoreDelay;
     [SerializeField] private float _canInteractDelay;
@@ -16,7 +18,7 @@ public class CrumblingPlatform : MonoBehaviour, IShakeProvider {
     private Collider2D _collider;
 
     private void Awake() {
-        _collider = GetComponent<Collider2D>();
+        _collider = gameObject.GetComponent<Collider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

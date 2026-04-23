@@ -3,10 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerDeath : MonoBehaviour {
     public static PlayerDeath Instance { get; private set; }
     public event Action OnDeath;
 
+    [Header("Visual settings")]
     [SerializeField] private GameObject _playerVisual;
     [SerializeField] private GameObject _explosionPrefab;
 
@@ -16,7 +19,8 @@ public class PlayerDeath : MonoBehaviour {
 
     private void Awake() {
         if (Instance != null) {
-            Debug.LogError("Instance of PlayerDeath already exists");
+            Destroy(gameObject);
+            return;
         }
 
         Instance = this;
