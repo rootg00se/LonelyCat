@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerElectricity : MonoBehaviour {
     public static PlayerElectricity Instance { get; private set; }
+    public bool IsCharged { get; set; } = false;
 
     private bool _canInteractWithPanel = false;
     public event Action OnElectrification;

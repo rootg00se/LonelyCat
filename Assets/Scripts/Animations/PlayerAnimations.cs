@@ -5,13 +5,13 @@ public class PlayerAnimations : MonoBehaviour {
     private const string IS_RUNNING = "IsRunning";
     private const string ON_JUMPED = "Jumped";
     private const string IS_GROUNDED = "IsGrounded";
-    private const string ON_ELECTRIFY = "Electrify";
+    private const string ON_SHOCK = "Shock";
 
     private Animator _animator;
 
     private void Awake() {
         _animator = gameObject.GetComponent<Animator>();
-    } 
+    }
 
     private void Start() {
         GameInputManager.Instance.OnJump += OnJump;
@@ -24,5 +24,5 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     private void OnJump() => _animator.SetTrigger(ON_JUMPED);
-    private void OnElectrification() =>_animator.SetTrigger(ON_ELECTRIFY);
+    private void OnElectrification() =>_animator.SetTrigger(ON_SHOCK);
 }

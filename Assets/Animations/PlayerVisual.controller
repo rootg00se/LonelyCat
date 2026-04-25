@@ -88,7 +88,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4123770110112023870}
-    m_Position: {x: 240, y: 110, z: 0}
+    m_Position: {x: 240, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4319700176519653172}
     m_Position: {x: 240, y: 0, z: 0}
@@ -106,7 +106,7 @@ AnimatorStateMachine:
     m_Position: {x: 480, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -216726178950747651}
-    m_Position: {x: -160, y: 220, z: 0}
+    m_Position: {x: -160, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1571452823928570094}
@@ -116,7 +116,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -140, y: 120, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_EntryPosition: {x: 260, y: 360, z: 0}
   m_ExitPosition: {x: 130, y: -110, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4123770110112023870}
@@ -255,7 +255,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Electrify
+  - m_Name: Shock
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -480,7 +480,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Electrify
+    m_ConditionEvent: Shock
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -216726178950747651}

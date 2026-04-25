@@ -13,12 +13,14 @@ public class SwapSkin : MonoBehaviour {
         _spriteLibrary = gameObject.GetComponent<SpriteLibrary>();
     }
 
-    public void ChangeToElectricAsset() {
-        _spriteLibrary.spriteLibraryAsset = _electricSpriteLibrary;
-    }
+    public void SwapAsset() {
+        if (PlayerElectricity.Instance.IsCharged) {
+            _spriteLibrary.spriteLibraryAsset = _defaultSpriteLibrary;
+        } else {
+            _spriteLibrary.spriteLibraryAsset = _electricSpriteLibrary;
+        }
 
-    public void ChangeToDefaultAsset() {
-        _spriteLibrary.spriteLibraryAsset = _defaultSpriteLibrary;
+        PlayerElectricity.Instance.IsCharged = !PlayerElectricity.Instance.IsCharged;
     }
 
     public void AllowInteractions() {
