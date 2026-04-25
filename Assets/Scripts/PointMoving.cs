@@ -1,7 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PointMoving : MonoBehaviour {
+    public event Action OnPatrolling;
+    public event Action OnWaiting;
+    public event Action<float> OnDirectionChanged;
+
     [Header("Base settings")]
     [SerializeField] private Transform[] _movingPoints;
     [SerializeField] private float _cooldown;
@@ -40,11 +45,14 @@ public class PointMoving : MonoBehaviour {
 
     private IEnumerator ChangeTarget() {
         _isWaiting = true;
+        OnWaiting?.Invoke();
 
         yield return new WaitForSeconds(_cooldown);
 
-        SetNextTarget();
         _isWaiting = false;
+
+        OnPatrolling?.Invoke();
+        SetNextTarget();
     }
 
     private void SetNextTarget() {
@@ -63,6 +71,7 @@ public class PointMoving : MonoBehaviour {
         }
 
         _targetPoint = _movingPoints[_currentIndex];
+        OnDirectionChanged?.Invoke(_isDirectionForward ? -1 : 1);
     }
 
     private void OnDrawGizmos() {
