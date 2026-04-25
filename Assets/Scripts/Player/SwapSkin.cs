@@ -15,12 +15,10 @@ public class SwapSkin : MonoBehaviour {
 
     public void SwapAsset() {
         if (PlayerElectricity.Instance.IsCharged) {
-            _spriteLibrary.spriteLibraryAsset = _defaultSpriteLibrary;
-        } else {
             _spriteLibrary.spriteLibraryAsset = _electricSpriteLibrary;
+        } else {
+            _spriteLibrary.spriteLibraryAsset = _defaultSpriteLibrary;
         }
-
-        PlayerElectricity.Instance.IsCharged = !PlayerElectricity.Instance.IsCharged;
     }
 
     public void AllowInteractions() {

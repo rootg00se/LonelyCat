@@ -7214,6 +7214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348bd10f73681b36399e01ee9b6d3b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectrelizePanel
+  _panelType: 1
 --- !u!1 &1309187724
 GameObject:
   m_ObjectHideFlags: 0
@@ -26262,6 +26263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348bd10f73681b36399e01ee9b6d3b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElectrelizePanel
+  _panelType: 0
 --- !u!58 &2038577908
 CircleCollider2D:
   m_ObjectHideFlags: 0
