@@ -5,8 +5,8 @@ public class PlayerElectricity : MonoBehaviour {
     public static PlayerElectricity Instance { get; private set; }
     public bool IsCharged { get; set; } = false;
 
-    private ElectrelizePanel _currentPanel = null;
-    public event Action OnElectrification;
+    private ElectricitySource _currentSource = null;
+    public event Action<string> OnElectrification;
 
     private void Awake() {
         if (Instance != null) {
@@ -22,24 +22,26 @@ public class PlayerElectricity : MonoBehaviour {
     }
 
     private void OnInteract() {
-        if (_currentPanel == null) return;
-
-        bool canCharge = _currentPanel.GetPanelType() == ElectrelizePanel.PanelType.Charger && !IsCharged;
-        bool canDischarge = _currentPanel.GetPanelType() == ElectrelizePanel.PanelType.Discharger && IsCharged;
-
-        if (canCharge || canDischarge) {
-            ExecuteInteraction();
+        if (_currentSource is ElectrelizePanel) {
+            ExecuteInteraction(_currentSource);
         }
     }
 
-    public void ExecuteInteraction() {
-        IsCharged = !IsCharged;
-        _currentPanel.Use();
+    public void ExecuteInteraction(ElectricitySource source) {
+        if (source == null) return;
 
-        OnElectrification?.Invoke();
-        PlayerMovement.Instance.StopInteraction();
+        bool canCharge = source.GetPanelType() == ElectricitySource.SourceType.Charger && !IsCharged;
+        bool canDischarge = source.GetPanelType() == ElectricitySource.SourceType.Discharger && IsCharged;
+
+        if (canCharge || canDischarge) {
+            IsCharged = !IsCharged;
+            source.Interact();
+
+            OnElectrification?.Invoke(source.AnimationTrigger);            
+            PlayerMovement.Instance.StopInteraction();
+        }
     }
 
-    public void SetCurrentPanel(ElectrelizePanel panel) => _currentPanel = panel;
-    public void ResetCurrentPanel() => _currentPanel = null;
+    public void SetCurrentPanel(ElectricitySource source) => _currentSource = source;
+    public void ResetCurrentPanel() => _currentSource = null;
 }

@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class ElectrelizePanel : MonoBehaviour {
-    public enum PanelType { Charger, Discharger };
-
-    [SerializeField] private PanelType _panelType;
-
+public class ElectrelizePanel : ElectricitySource {
+    public override string AnimationTrigger => "Shock";
     private bool _isUsed = false;
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -21,7 +18,8 @@ public class ElectrelizePanel : MonoBehaviour {
         }
     }
 
-    public PanelType GetPanelType() => _panelType;
-    public void Use() => _isUsed = true;
+    public override void Interact() {
+        _isUsed = true;
+    }
 }
  

@@ -65,23 +65,11 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    public bool GetIsGrounded() {
-        return _isGrounded;
-    }
-
-    public bool GetIsRunning() {
-        return _movement.x != 0;
-    }
-
-    public void StopInteraction() {
-        _canInteract = false;
-    }
-
-    public void StartInteraction() {
-        _canInteract = true;
-    }
-
-    public bool CanInteract() {
-        return _canInteract;
-    }
+    public bool GetIsGrounded() => _isGrounded;
+    public bool CanInteract() => _canInteract;
+    public bool GetIsRunning() => _movement.x != 0;
+    
+    public void StopInteraction() => _canInteract = false;
+    public void StartInteraction() => _canInteract = true;
 }
+

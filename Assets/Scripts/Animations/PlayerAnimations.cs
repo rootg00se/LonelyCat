@@ -5,7 +5,6 @@ public class PlayerAnimations : MonoBehaviour {
     private const string IS_RUNNING = "IsRunning";
     private const string ON_JUMPED = "Jumped";
     private const string IS_GROUNDED = "IsGrounded";
-    private const string ON_SHOCK = "Shock";
 
     private Animator _animator;
 
@@ -24,5 +23,5 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     private void OnJump() => _animator.SetTrigger(ON_JUMPED);
-    private void OnElectrification() =>_animator.SetTrigger(ON_SHOCK);
+    private void OnElectrification(string animationTrigger) =>_animator.SetTrigger(animationTrigger);
 }

@@ -6,6 +6,7 @@ public class GameInputManager : MonoBehaviour {
 
     public event Action OnJump;
     public event Action OnInteract;
+    public event Action OnPlatformDescend;
 
     private GameInput _gameInput;
 
@@ -22,11 +23,18 @@ public class GameInputManager : MonoBehaviour {
 
         _gameInput.Player.Jump.performed += JumpPerformed;
         _gameInput.Player.Interact.performed += InteractPerformed;
+        _gameInput.Player.PlatformDescent.performed += PlatformDescent;
     }
 
     private void JumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         if (PlayerMovement.Instance != null && PlayerMovement.Instance.CanInteract()) {
             OnJump?.Invoke();
+        }
+    }
+
+    private void PlatformDescent(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        if (PlayerMovement.Instance != null && PlayerMovement.Instance.CanInteract()) {
+            OnPlatformDescend?.Invoke();
         }
     }
 
