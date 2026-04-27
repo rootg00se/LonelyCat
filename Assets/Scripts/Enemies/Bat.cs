@@ -17,7 +17,7 @@ public class Bat : MonoBehaviour {
     }
 
     private void Patrol() {
-        float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);
+        float distanceToPlayer = Vector2.Distance(_defaultPosition, _playerTransform.position);
         Vector2 moveToVector = distanceToPlayer <= _patrolRadius ? _playerTransform.position : _defaultPosition;
 
         float distanceToTarget = Vector2.Distance(transform.position, moveToVector);

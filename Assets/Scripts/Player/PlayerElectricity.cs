@@ -22,7 +22,7 @@ public class PlayerElectricity : MonoBehaviour {
     }
 
     private void OnInteract() {
-        if (_currentSource is ElectrelizePanel) {
+        if (_currentSource is not ElectricPlatform) {
             ExecuteInteraction(_currentSource);
         }
     }
@@ -42,6 +42,6 @@ public class PlayerElectricity : MonoBehaviour {
         }
     }
 
-    public void SetCurrentPanel(ElectricitySource source) => _currentSource = source;
-    public void ResetCurrentPanel() => _currentSource = null;
+    public void SetCurrentSource(ElectricitySource source) => _currentSource = source;
+    public void ResetCurrentSource() => _currentSource = null;
 }

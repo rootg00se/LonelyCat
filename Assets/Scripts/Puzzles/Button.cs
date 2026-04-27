@@ -16,6 +16,8 @@ public class Button : MonoBehaviour {
 
             buttonBlock.ChangeVisual(_triggerBlockVisual);
             SetActiveVisual(true);
+        } else if (collision.gameObject.TryGetComponent(out ElectricBlock _)) {
+            _obstacle.Hide();
         }
     }
 
@@ -25,6 +27,8 @@ public class Button : MonoBehaviour {
 
             buttonBlock.ResetVisual();
             SetActiveVisual(false);
+        } else if (collision.gameObject.TryGetComponent(out ElectricBlock _)) {
+            _obstacle.Show();
         }
     }
 
