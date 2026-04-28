@@ -5,6 +5,7 @@ public class PlayerAnimations : MonoBehaviour {
     private const string IS_RUNNING = "IsRunning";
     private const string ON_JUMPED = "Jumped";
     private const string IS_GROUNDED = "IsGrounded";
+    private const string IS_LEVITATING = "IsLevitating";
 
     private Animator _animator;
 
@@ -20,6 +21,7 @@ public class PlayerAnimations : MonoBehaviour {
     private void Update() {
         _animator.SetBool(IS_GROUNDED, PlayerMovement.Instance.GetIsGrounded());
         _animator.SetBool(IS_RUNNING, PlayerMovement.Instance.GetIsRunning());
+        _animator.SetBool(IS_LEVITATING, PlayerMovement.Instance.GetIsLevitating());
     }
 
     private void OnJump() => _animator.SetTrigger(ON_JUMPED);
