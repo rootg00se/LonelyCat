@@ -28,7 +28,7 @@ public class MagneticForce : MonoBehaviour {
 
                 bool isPlayerCharged = PlayerElectricity.Instance.IsCharged;
 
-                if (isPlayerCharged) {
+                if (isPlayerCharged && !playerMove.GetIsGrounded()) {
                     if (playerMove.GetIsGrounded() && playerY > liftOffThreshold) {
                         playerMove.SetLevitation(false);
                 } else {

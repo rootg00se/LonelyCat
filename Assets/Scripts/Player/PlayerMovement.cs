@@ -63,16 +63,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void CheckIfOnGround() {
-        bool detectedGround = Physics2D.OverlapCircle(_groundPoint.position, _groundPointRadius, _groundLayer);
-
-        if (_isLevitating)  {
-            _isGrounded = false;
-            _lastPhysicalGroundState = detectedGround;
-
-            return;
-        }   
-
-        _isGrounded = detectedGround;
+        _isGrounded = Physics2D.OverlapCircle(_groundPoint.position, _groundPointRadius, _groundLayer);
     }
 
     private void Reflect() {
@@ -87,7 +78,7 @@ public class PlayerMovement : MonoBehaviour {
         _rigidBody.gravityScale = active ? 0 : _defaultGravityScale;
     }
 
-    public bool GetIsGrounded() => _isLevitating ? _lastPhysicalGroundState : _isGrounded;
+    public bool GetIsGrounded() => _isGrounded;
     public bool GetIsLevitating() => _isLevitating;
     public bool CanInteract() => _canInteract;
     public bool GetIsRunning() => _movement.x != 0;
