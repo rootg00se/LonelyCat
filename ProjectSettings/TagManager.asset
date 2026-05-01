@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2049003641
+    locked: 0
+  - name: Foreground
+    uniqueID: 11069549
     locked: 0
   m_RenderingLayers:
   - Default
